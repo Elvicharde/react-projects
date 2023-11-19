@@ -52,7 +52,7 @@
 #quote-box .buttons .button:hover {
     opacity: 0.9;
 }
-#quote-box .buttons .button#tweet-quote,
+#quote-box .buttons .button#tweet-quote2,
 #quote-box .buttons .button#tumblr-quote {
     float: left;
     padding: 0px;
@@ -65,4 +65,45 @@
 }
 #quote-box .buttons .button#new-quote {
     float: right;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 480px) {
+    #quote-box {
+        font-family: "Raleway", sans-serif;
+        border-radius: 3px;
+        position: relative;
+        width: 80%;
+        padding: 40px 25px;
+        display: table;
+        background-color: gray;
+        margin: auto;
+        margin-bottom: 20px;
+    }
+
+    #quote-box .quote-text {
+        text-align: center;
+        width: 99%;
+        height: auto;
+        clear: both;
+        font-weight: 500;
+        font-size: 1.75em;
+    }
+    #quote-box .quote-text i {
+        font-size: 1em;
+        margin-right: 0.4em;
+    }
+    #quote-box .quote-author {
+        width: 98%;
+        height: auto;
+        clear: both;
+        padding-top: 20px;
+        font-size: 1em;
+        text-align: right;
+    }
+    #quote-box .buttons {
+        width: 98%;
+        margin: auto;
+        display: block;
+    }
 }
