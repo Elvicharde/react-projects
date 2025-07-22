@@ -1,0 +1,182 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow: auto; /* or scroll */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ */
+}
+
+html::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+body {
+  font-family: "Karla", sans-serif;
+  margin: auto;
+  background-color: rgb(250, 239, 239);
+  min-height: 100vh;
+}
+
+main {
+  margin-inline: auto;
+  padding: 36px;
+  max-width: 600px;
+}
+
+.header {
+  background: linear-gradient(90deg, #672280 1.18%, #a626d3 100%);
+  color: white;
+  padding: 20px;
+}
+.header > nav {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  height: 65px;
+}
+
+.header > nav > img {
+  height: 100%;
+}
+
+.header > nav > h1 {
+  position: relative;
+  font-size: 1.25rem;
+  margin-right: auto;
+  right: 10px;
+}
+
+.form {
+  display: grid;
+  grid-template: auto auto / 1fr 1fr;
+  gap: 17px;
+  margin-bottom: 17px;
+  color: black;
+}
+
+.form input {
+  width: 100%;
+  margin-top: 5px;
+  border-radius: 5px;
+  border: 1px solid #d5d4d8;
+  text-indent: 5px;
+}
+
+.form button {
+  grid-column: 1 / -1;
+  border-radius: 5px;
+  background: linear-gradient(90.41deg, #711f8d 1.14%, #a818da 100%);
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.form input,
+.form button {
+  min-height: 40px;
+  font-family: "Karla", sans-serif;
+}
+
+/* .meme {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+} */
+
+.meme {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%; /* 🆕 Ensure it fills the available space */
+  max-width: 600px; /* optional if you want to limit it */
+}
+
+.meme > img {
+  width: 100%; /* 🆕 Force it to take full width */
+  height: auto;
+  border-radius: 3px;
+  object-fit: cover; /* 🧠 Stretch image if necessary */
+}
+
+/* .meme > img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 3px;
+  object-fit: contain;
+} */
+
+.meme span {
+  position: absolute;
+  text-align: center;
+  margin-block: 15px;
+  padding-inline: 5px;
+  font-family: impact, sans-serif;
+  font-size: 2rem;
+  text-transform: uppercase;
+  color: white;
+  letter-spacing: 1px;
+  text-shadow: 2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000,
+    -2px 2px 0 #000, 0 2px 0 #000, 2px 0 0 #000, 0 -2px 0 #000, -2px 0 0 #000,
+    2px 2px 5px #000;
+}
+
+.bottom-text {
+  bottom: 0;
+}
+
+.top-text {
+  top: 0;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 600px) {
+  /* Ensure the meme image scales down gracefully */
+  .meme {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .meme > img {
+    width: 100%;
+    height: auto;
+  }
+
+  /* Responsive positioning and scaling for top and bottom text */
+  .meme span {
+    font-size: 1.25rem; /* Smaller font size for smaller screens */
+    padding-inline: 2px;
+    margin-block: 10px;
+    max-width: 95%;
+  }
+
+  /* Optional: Prevent dragging text outside meme on small screens */
+  .top-text,
+  .bottom-text {
+    left: 50% !important; /* Center text by default */
+    transform: translateX(-50%);
+    width: 100%;
+  }
+  
+
+  /* Input boxes */
+  .form {
+    grid-template-columns: 1fr; /* Stack input fields vertically */
+  }
+
+  .form input,
+  .form button {
+    font-size: 1rem;
+  }
+
+  main {
+    padding: 32px 24px;
+    min-height: 100vh;
+  }
+}
