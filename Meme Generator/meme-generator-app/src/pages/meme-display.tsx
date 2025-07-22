@@ -1,8 +1,10 @@
-import { Suspense, useEffect, useState } from "react";
-import MemePreview from "../components/meme-preview";
+import { lazy, Suspense, useEffect, useState } from "react";
+// import MemePreview from "../components/meme-preview";
 import MemeControl from "../components/meme-control";
 import { fetchMemeData } from "../services/api";
 import { getRandomIndex } from "../lib/utils";
+
+const MemePreview = lazy(() => import("../components/meme-preview")); // ✅ lazy import
 
 export interface MemeText {
   topText: string;
@@ -51,5 +53,10 @@ const MemeDisplay = () => {
 export default MemeDisplay;
 
 function Loading() {
-  return <h2>🌀 Loading...</h2>;
+  return (
+    <div className="loading-container">
+      <div className="spinner" />
+      <span className="loading-text">Loading meme preview...</span>
+    </div>
+  );
 }

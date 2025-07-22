@@ -1,4 +1,5 @@
 import "./App.css";
+import Footer from "./components/footer";
 import Header from "./components/header";
 import MemeDisplay from "./pages/meme-display";
 
@@ -8,6 +9,7 @@ function App() {
       <Header />
       <main>
         <MemeDisplay />
+        <Footer />
       </main>
     </>
   );

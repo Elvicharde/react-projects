@@ -1,9 +1,10 @@
 import "./App.css";
+// import Editor from "./Components/Editor";
 
 function App() {
     return (
         <div className="App">
-            <header className="App-header"></header>
+            <h1>Hello World</h1>
         </div>
     );
 }

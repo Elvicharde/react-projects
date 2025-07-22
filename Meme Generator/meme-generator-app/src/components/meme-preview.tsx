@@ -1,5 +1,6 @@
-import { useRef } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import { useDraggable } from "../hooks/use-draggable";
+import { useElementSize } from "../hooks/use-element-size";
 
 interface MemePreviewProps {
   imageUrl?: string;
@@ -13,17 +14,34 @@ const MemePreview = ({
   imageUrl = "/",
 }: MemePreviewProps) => {
   const memeRef = useRef<HTMLDivElement>(null);
-  const topTextDrag = useDraggable({ x: 100, y: 20 });
-  const bottomTextDrag = useDraggable({ x: 100, y: 300 });
+  const topRef = useRef<HTMLSpanElement>(null);
+  const bottomRef = useRef<HTMLSpanElement>(null);
+
+  const topSize = useElementSize(topRef);
+  const bottomSize = useElementSize(bottomRef);
+
+  const topDrag = useDraggable({
+    initial: { x: 100, y: 20 },
+    boundsRef: memeRef,
+    elementSize: topSize,
+  });
+
+  const bottomDrag = useDraggable({
+    initial: { x: 100, y: 300 },
+    boundsRef: memeRef,
+    elementSize: bottomSize,
+  });
+
   return (
     <div className="meme" ref={memeRef}>
       <img src={imageUrl} alt="meme-image" />
       <span
+        ref={topRef}
         className="top-text text"
-        onMouseDown={topTextDrag.onMouseDown}
+        onMouseDown={topDrag.onMouseDown}
         style={{
-          left: topTextDrag.position.x,
-          top: topTextDrag.position.y,
+          left: topDrag.position.x,
+          top: topDrag.position.y,
           cursor: "move",
           userSelect: "none",
         }}
@@ -31,11 +49,12 @@ const MemePreview = ({
         {topText}
       </span>
       <span
+        ref={bottomRef}
         className="bottom-text text"
-        onMouseDown={bottomTextDrag.onMouseDown}
+        onMouseDown={bottomDrag.onMouseDown}
         style={{
-          left: bottomTextDrag.position.x,
-          top: bottomTextDrag.position.y,
+          left: bottomDrag.position.x,
+          top: bottomDrag.position.y,
           cursor: "move",
           userSelect: "none",
         }}

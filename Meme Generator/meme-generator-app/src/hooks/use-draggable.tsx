@@ -2,7 +2,17 @@ import { useState, useRef, useEffect } from "react";
 
 type Position = { x: number; y: number };
 
-export function useDraggable(initial: Position) {
+interface UseDraggableOptions {
+  initial: Position;
+  boundsRef?: React.RefObject<HTMLElement | null>; // the container to stay inside
+  elementSize?: { width: number; height: number }; // optional for precise edge checking
+}
+
+export function useDraggable({
+  initial,
+  boundsRef,
+  elementSize,
+}: UseDraggableOptions) {
   const [position, setPosition] = useState<Position>(initial);
   const draggingRef = useRef(false);
   const offset = useRef<Position>({ x: 0, y: 0 });
@@ -18,10 +28,20 @@ export function useDraggable(initial: Position) {
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       if (!draggingRef.current) return;
-      setPosition({
-        x: e.clientX - offset.current.x,
-        y: e.clientY - offset.current.y,
-      });
+
+      let x = e.clientX - offset.current.x;
+      let y = e.clientY - offset.current.y;
+
+      if (boundsRef?.current) {
+        const bounds = boundsRef.current.getBoundingClientRect();
+        const maxX = bounds.width - (elementSize?.width || 0);
+        const maxY = bounds.height - (elementSize?.height || 0);
+
+        x = Math.max(0, Math.min(x, maxX));
+        y = Math.max(0, Math.min(y, maxY));
+      }
+
+      setPosition({ x, y });
     };
 
     const handleMouseUp = () => {
@@ -34,7 +54,7 @@ export function useDraggable(initial: Position) {
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("mouseup", handleMouseUp);
     };
-  }, []);
+  }, [boundsRef, elementSize]);
 
   return {
     position,
