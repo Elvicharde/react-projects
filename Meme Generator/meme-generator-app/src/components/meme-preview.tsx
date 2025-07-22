@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import { useDraggable } from "../hooks/use-draggable";
 import { useElementSize } from "../hooks/use-element-size";
 
