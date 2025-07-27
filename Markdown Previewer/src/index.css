@@ -1,0 +1,40 @@
+@import "tailwindcss";
+
+/* Root box-sizing and layout reset */
+:root {
+  box-sizing: border-box;
+  height: 100%;
+  width: 100%;
+}
+
+/* Inherit box-sizing and remove default spacing */
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ */
+}
+
+/* Ensure body stretches to fill viewport */
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+/* hide-scrollbar utility */
+.hide-scrollbar {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ */
+}
+
+*::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
