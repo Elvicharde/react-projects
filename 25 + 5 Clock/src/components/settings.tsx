@@ -1,10 +1,10 @@
 import useFocusConfig, {
   type TDuration,
-  type TNotifications,
+  // type TNotifications,
 } from "@/context/focus-config";
 import TimerController from "./shared/timer-controller";
 import { Separator } from "./ui/separator";
-type TSessionType = "sessionNotifications" | "breakNotifications";
+// type TSessionType = "sessionNotifications" | "breakNotifications";
 
 const Settings = () => {
   const { config, updateConfig } = useFocusConfig();
@@ -23,23 +23,23 @@ const Settings = () => {
     updateConfig({ duration: newDuration });
   };
 
-  const handleSetSound = (
-    event: React.ChangeEvent<HTMLSelectElement>
-  ): void => {
-    const { name, value } = event.currentTarget;
+  // const handleSetSound = (
+  //   event: React.ChangeEvent<HTMLSelectElement>
+  // ): void => {
+  //   const { name, value } = event.currentTarget;
 
-    const [typePrefix, key] = name.split(".") as [
-      TSessionType,
-      keyof TNotifications
-    ];
+  //   const [typePrefix, key] = name.split(".") as [
+  //     TSessionType,
+  //     keyof TNotifications
+  //   ];
 
-    const newNotification = {
-      ...config[typePrefix],
-      [key]: value,
-    };
+  //   const newNotification = {
+  //     ...config[typePrefix],
+  //     [key]: value,
+  //   };
 
-    updateConfig({ [typePrefix]: newNotification });
-  };
+  //   updateConfig({ [typePrefix]: newNotification });
+  // };
 
   return (
     <div className="w-[90%] max-w-[928px] !mx-auto !mt-16 text-[#121417]">
