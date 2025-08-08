@@ -60,14 +60,14 @@ const FocusPreview = () => {
   const handleCountDown = useCallback(
     ({ timerAction }: { timerAction: "start" | "reset" }) => {
       if (timerAction === "reset") {
-        setBreak(false);
-        setTimerControl(null);
         setTimerCount({
           ...defaultTimerCount,
           // minutes: isBreak ? duration.break : duration.session,
-          minutes: duration.session,
+          minutes: 25,
           seconds: 0,
         });
+        setBreak(false);
+        setTimerControl(null);
         updateConfig({ duration: { session: 25, break: 5 } });
 
         // manage audio
