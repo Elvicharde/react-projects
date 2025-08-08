@@ -3,7 +3,8 @@ interface TimerDisplayProps {
   timeUnit: "hours" | "minutes" | "seconds" | "milli-seconds";
 }
 
-const formatTimerDisplay = (value: number) => String(value).padStart(2, "0");
+export const formatTimerDisplay = (value: number) =>
+  String(value).padStart(2, "0");
 
 const TimerDisplay = ({ timerCount, timeUnit }: TimerDisplayProps) => {
   return (
